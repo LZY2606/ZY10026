@@ -183,9 +183,9 @@ class NodeVisitor(object, metaclass=RuleDecoratorMeta):
     #: :meth:`NodeVisitor.parse()` as a shortcut.
     grammar = None
 
-    #: Classes of exceptions you actually intend to raise during visitation
-    #: and which should propagate out of the visitor. These will not be
-    #: wrapped in a VisitationError when they arise.
+    #: Classes of exceptions, and their subclasses, that you actually intend
+    #: to raise during visitation and which should propagate out of the
+    #: visitor. These will not be wrapped in a VisitationError when they arise.
     unwrapped_exceptions = ()
 
     # TODO: If we need to optimize this, we can go back to putting subclasses
@@ -217,7 +217,7 @@ class NodeVisitor(object, metaclass=RuleDecoratorMeta):
         except Exception as exc:
             # implentors may define exception classes that should not be
             # wrapped.
-            if type(exc) in self.unwrapped_exceptions:
+            if isinstance(exc, self.unwrapped_exceptions):
                 raise
             # Catch any exception, and tack on a parse tree so it's easier to
             # see where it went wrong.
