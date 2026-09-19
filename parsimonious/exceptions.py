@@ -96,6 +96,7 @@ class VisitationError(ParsimoniousError):
 
         """
         self.original_class = exc_class
+        self.node = node
         super().__init__(
             '%s: %s\n\n'
             'Parse tree:\n'

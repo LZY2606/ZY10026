@@ -42,6 +42,11 @@ dependencies = ["regex>=2022.3.15"]
 [project.optional-dependencies]
 testing = ["pytest"]
 
+[tool.pytest.ini_options]
+# Show the name of every executed test (including the regression matrix and
+# mutation-verification stages) even under `-q`.
+addopts = "-rA"
+
 [tool.setuptools]
 include-package-data = true
 
